@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>30-Day Health Challenge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#fff5f5;--card:#fff;--ink:#241618;--mut:#80696d;--gold:#e11d2e;--gold2:#ff5a5f;--ongold:#fff;--line:#f0dcdd;--ok:#16a34a;--part:#e89a0c;--no:#dc2626;--nog:#64748b;--sh:0 8px 28px rgba(225,29,46,.10);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0a0b;--card:#181214;--ink:#f5eded;--mut:#a89a9c;--gold:#f04452;--gold2:#ff7a80;--line:#2c2124;--ok:#4ade80;--part:#fbbf24;--no:#f87171;--nog:#94a3b8;--sh:0 8px 28px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--bg:#0d0a0b;--card:#181214;--ink:#f5eded;--mut:#a89a9c;--gold:#f04452;--gold2:#ff7a80;--line:#2c2124;--ok:#4ade80;--part:#fbbf24;--no:#f87171;--nog:#94a3b8;--sh:0 8px 28px rgba(0,0,0,.45)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);background-image:radial-gradient(70% 40% at 50% -8%,color-mix(in srgb,var(--gold) 20%,transparent),transparent);background-attachment:fixed;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:18px 16px 56px}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes slidein{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.13)}70%{transform:scale(1)}}
+@keyframes shine{from{background-position:200% 0}to{background-position:-200% 0}}
+.hero{display:flex;gap:14px;align-items:center;padding:20px;border-radius:20px;background:linear-gradient(135deg,var(--gold),#7f1020);color:#fff;box-shadow:var(--sh);margin-bottom:16px;animation:rise .6s both}
+.hero h1{margin:0;font-size:1.35rem;line-height:1.2}
+.hero p{margin:4px 0 0;opacity:.9;font-size:.92rem}
+.heart{font-size:2.3rem;animation:beat 1.5s infinite;flex:none}
+.tabs{display:flex;gap:8px;margin-bottom:14px;animation:rise .6s .05s both}
+.tab{flex:1;padding:11px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;font:inherit;font-weight:600;cursor:pointer;transition:all .2s}
+.tab:active{transform:scale(.97)}
+.tab.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ongold);border-color:transparent;box-shadow:var(--sh)}
+.page{animation:fade .35s both}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--sh);animation:rise .55s both}
+.page>.card:nth-child(2){animation-delay:.08s}.page>.card:nth-child(3){animation-delay:.16s}.page>.card:nth-child(4){animation-delay:.24s}
+label{display:block;font-weight:600;font-size:.9rem;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 22%,transparent)}
+textarea{min-height:84px;resize:vertical}
+.row{display:flex;gap:10px}.row>div{flex:1}
+.btn{display:block;width:100%;padding:14px;border:0;border-radius:12px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px;background:linear-gradient(110deg,var(--gold),var(--gold2),var(--gold));background-size:200% 100%;color:var(--ongold);box-shadow:var(--sh);transition:transform .15s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);animation:shine 2.5s linear infinite}
+.btn:active{transform:scale(.98)}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.alt:hover{animation:none;border-color:var(--gold)}
+.msg{margin-top:10px;font-size:.9rem;color:var(--mut)}.err{color:var(--no)}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .5s cubic-bezier(.2,.9,.3,1.2)}
+.item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);animation:slidein .45s both;animation-delay:var(--d,0ms)}
+.item:first-of-type{border-top:0}
+.item span{flex:1;font-size:.93rem}
+.yn{display:flex;gap:6px}
+.yn button{min-width:54px;padding:8px 11px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-weight:600;cursor:pointer;transition:all .18s}
+.yn button:active{transform:scale(.9)}
+.yn button.on{animation:pop .3s both;color:#fff}
+.yn button.on[data-v="1"]{background:var(--ok);border-color:var(--ok)}
+.yn button.on[data-v="0"]{background:var(--nog);border-color:var(--nog)}
+.dots{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-top:10px}
+.dot{aspect-ratio:1;border-radius:8px;border:1px solid var(--line);font-size:.7rem;display:flex;align-items:center;justify-content:center;color:var(--mut);animation:pop .4s both;animation-delay:calc(var(--i,0)*14ms)}
+.dot.done{background:var(--ok);color:#fff;border-color:var(--ok)}.dot.partly{background:var(--part);color:#fff;border-color:var(--part)}.dot.missed{background:var(--no);color:#fff;border-color:var(--no)}
+#pimg{animation:pop .55s both}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;font-size:.8rem;min-width:100%}
+th,td{padding:4px 5px;text-align:center;border-bottom:1px solid var(--line)}
+td.nm{text-align:left;white-space:nowrap;position:sticky;left:0;background:var(--card);font-weight:600;cursor:pointer;padding-right:10px}
+td.nm:hover{color:var(--gold)}
+.c{width:24px;height:20px;border-radius:5px;display:inline-block;background:var(--line);opacity:.5;font-size:.65rem;color:#fff;text-align:center;line-height:20px;animation:fade .5s both}
+.c:empty{color:transparent}
+.c.done{background:var(--ok);opacity:1}.c.partly{background:var(--part);opacity:1}.c.missed{background:var(--no);opacity:1}
+.ent{border-top:1px solid var(--line);padding:8px 0;font-size:.9rem;animation:fade .4s both}.ent b{color:var(--gold)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+[hidden]{display:none!important}
+
+#ckwrap>.card:nth-child(2){animation-delay:.08s}#ckwrap>.card:nth-child(3){animation-delay:.16s}#ckwrap>.card:nth-child(4){animation-delay:.24s}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 85%,transparent);border-bottom:1px solid var(--line)}
+.navin{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.logo{font-size:1.05rem;color:var(--ink);text-decoration:none;font-weight:600}.logo b{color:var(--gold)}
+nav{display:flex;gap:4px}
+nav a{padding:8px 12px;border-radius:10px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.92rem;transition:.2s}
+nav a:hover{background:var(--line)}nav a.act{background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--gold)}
+#burger{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 12px;font-size:1.1rem;cursor:pointer}
+@media (max-width:640px){#burger{display:block}nav{display:none;width:100%;flex-direction:column}nav.open{display:flex}}
+.landing{padding:46px 22px;border-radius:24px;background:linear-gradient(135deg,var(--gold),#7f1020);color:#fff;box-shadow:var(--sh);text-align:center;animation:rise .6s both}
+.landing h1{font-size:clamp(1.8rem,6vw,3rem);line-height:1.1;margin:10px 0}
+.landing p{max-width:520px;margin:0 auto 20px;opacity:.92}
+.landing .heart{font-size:3rem;display:inline-block}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cta .btn{width:auto;min-width:170px;margin:0;background:#fff;color:#b0121f;animation:none}
+.cta .btn.alt{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.75)}
+.stats{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap}.stat{flex:1;min-width:110px;text-align:center}
+.stat b{display:block;font-size:1.6rem;color:var(--gold)}.stat span{font-size:.82rem;color:var(--mut)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.step .n{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:8px}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}
+.chip{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);animation:rise .5s both;animation-delay:calc(var(--i,0)*30ms)}
+h2{margin:0 0 6px;font-size:1.25rem}h3{margin:0 0 6px}
+.bigid{font-size:2rem;font-weight:800;letter-spacing:3px;color:var(--gold);margin:6px 0;animation:pop .5s both}
+footer{text-align:center;color:var(--mut);padding:24px 16px;font-size:.85rem}
+.narrow{max-width:640px;margin:0 auto}
+.tbl th,.tbl td{text-align:left;padding:7px 8px;white-space:nowrap}
+.tbl tr[data-id]{cursor:pointer}.tbl tr[data-id]:hover td{background:var(--line)}
+
+a.btn{text-decoration:none;text-align:center}
+.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:6px}
+.actions .card .btn{margin-top:14px}
+</style></head>
+<body>
+<header class="nav"><div class="navin">
+  <a class="logo" href="#top">❤️ <b>Health</b> Challenge</a>
+  <button id="burger" aria-label="Menu">☰</button>
+  <nav id="menu"><a href="#top" class="act">Home</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSfThtWxojq0OspviSpN0sfYKEW-XVV6po1ifFQNJV06q8WKYA/viewform" target="_blank" rel="noopener">Register</a><a href="https://docs.google.com/forms/d/e/1FAIpQLScQWuenwkm3jAlUh8yqA1znp87JNSusa6onajG_y_OdXuTOFQ/viewform" target="_blank" rel="noopener">Daily check-in</a><a href="#share">Result image</a></nav>
+</div></header>
+<main class="wrap" id="top">
+  <div class="page">
+    <div class="landing"><div class="heart">❤️</div>
+      <h1>30 Days. 17 Healthy Habits. One Stronger You.</h1>
+      <p>Join our 30-day Health Challenge. Register once, then check in every day with a simple Yes or No for each habit and watch your progress grow.</p>
+      <div class="cta"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfThtWxojq0OspviSpN0sfYKEW-XVV6po1ifFQNJV06q8WKYA/viewform" target="_blank" rel="noopener">Register now</a><a class="btn alt" href="https://docs.google.com/forms/d/e/1FAIpQLScQWuenwkm3jAlUh8yqA1znp87JNSusa6onajG_y_OdXuTOFQ/viewform" target="_blank" rel="noopener">Daily check-in</a></div>
+    </div>
+    <div class="stats"><div class="card stat"><b>30</b><span>days</span></div><div class="card stat"><b>17</b><span>daily habits</span></div><div class="card stat"><b>1</b><span>community</span></div></div>
+
+    <h2 style="margin:18px 0 10px">How it works</h2>
+    <div class="steps">
+      <div class="card step"><div class="n">1</div><b>Register</b><p class="msg">Fill the registration form once with your name and WhatsApp number.</p></div>
+      <div class="card step"><div class="n">2</div><b>Check in daily</b><p class="msg">Pick your name and the day, then answer Yes or No for each habit.</p></div>
+      <div class="card step"><div class="n">3</div><b>Track progress</b><p class="msg">Your scores are recorded automatically for all 30 days.</p></div>
+    </div>
+
+    <h2 style="margin:18px 0 10px">Get started</h2>
+    <div class="actions">
+      <div class="card"><b>Step 1: Register</b><p class="msg">New here? Register first so your name appears on the daily check-in list.</p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfThtWxojq0OspviSpN0sfYKEW-XVV6po1ifFQNJV06q8WKYA/viewform" target="_blank" rel="noopener">Open registration form</a></div>
+      <div class="card"><b>Step 2: Daily check-in</b><p class="msg">Already registered? Check in every day and choose the correct day number.</p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScQWuenwkm3jAlUh8yqA1znp87JNSusa6onajG_y_OdXuTOFQ/viewform" target="_blank" rel="noopener">Open daily check-in</a></div>
+      <div class="card"><b>Step 3: Share your result</b><p class="msg">After checking in, make your result image and post it in the WhatsApp group.</p><a class="btn alt" href="#share">Create result image</a></div>
+    </div>
+
+    <h2 id="share" style="margin:18px 0 10px">Share your result image</h2>
+    <div class="card">
+      <p class="msg" style="margin-top:0">Submit your Daily check-in form first (that records your progress), then make your result image here and post it in the group.</p>
+      <label for="name">Your name</label><input id="name" autocomplete="name" placeholder="Same name you registered with">
+      <div class="row"><div><label for="day">Day</label><select id="day"></select></div><div><label for="date">Date</label><input id="date" type="date"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px"><b>Today's habits</b><span class="msg" id="prog" style="margin:0"></span></div>
+      <div class="bar"><i id="barfill"></i></div><div id="items"></div>
+      <label for="notes">Notes (optional)</label><input id="notes" placeholder="How you feel, challenges, wins…">
+      <button class="btn" id="send">Create image and share</button>
+      <button class="btn alt" id="sendtxt">Send as text on WhatsApp instead</button>
+      <div class="msg" id="m1"></div>
+      <div id="prev" hidden><img id="pimg" alt="Your check-in" style="width:100%;border-radius:10px;margin-top:12px;border:1px solid var(--line)">
+        <p class="msg">If the share menu didn't open, press and hold the image to save it, then post it in the group.</p>
+        <a class="btn alt" href="https://docs.google.com/forms/d/e/1FAIpQLScQWuenwkm3jAlUh8yqA1znp87JNSusa6onajG_y_OdXuTOFQ/viewform" target="_blank" rel="noopener">Open daily check-in form</a></div>
+    </div>
+
+  </div>
+</main>
+<footer>30-Day Health Challenge</footer>
+<script>
+var ITEMS = ["Morning walk (30–60 minutes)","Glass of water upon waking","Practiced portion control","Avoided soda and sugary drinks","Reduced sugar and salt intake","Drank enough water","Read a book","Brushed teeth morning and night","Last meal by 6–7 PM","Evening stroll after dinner","Got enough sleep","Bathed morning and night","Maintained personal hygiene","Clean bedsheets and pillowcases","Wore clean underwear","Kept sleeping environment clean","Check your breast or Balls"];
+function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+document.getElementById("burger").onclick = function(){ document.getElementById("menu").classList.toggle("open"); };
+var CHALLENGE_NAME = "30-Day Health Challenge", N = ITEMS.length, ans = {};
+var $ = function(id){ return document.getElementById(id); };
+function today() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+for (var i = 1; i <= 30; i++) { var o = document.createElement("option"); o.value = i; o.textContent = "Day " + i; $("day").appendChild(o); }
+$("date").value = today();
+try { $("name").value = localStorage.getItem("hc_name") || ""; $("day").value = localStorage.getItem("hc_day") || 1; } catch(e) {}
+$("items").innerHTML = ITEMS.map(function(t, i){
+  return '<div class="item" style="--d:' + (i * 30) + 'ms"><span>' + esc(t) + '</span><div class="yn" data-i="' + i + '"><button data-v="1">Yes</button><button data-v="0">No</button></div></div>';
+}).join("");
+function mark() {
+  var n = 0;
+  [].forEach.call(document.querySelectorAll(".yn"), function(g){
+    var v = ans[g.dataset.i]; if (v !== undefined) n++;
+    [].forEach.call(g.children, function(b){ b.classList.toggle("on", v !== undefined && +b.dataset.v === v); });
+  });
+  $("prog").textContent = n + "/" + N + " answered"; $("barfill").style.width = (n / N * 100) + "%";
+}
+$("items").addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; ans[b.parentNode.dataset.i] = +b.dataset.v; mark(); });
+mark();
+function fail(t) { $("m1").textContent = t; $("m1").className = "msg err"; return null; }
+function build() {
+  var name = $("name").value.trim();
+  if (name.length < 2) return fail("Please enter your name.");
+  var left = 0; for (var i = 0; i < N; i++) if (ans[i] === undefined) left++;
+  if (left) return fail("Please answer all habits (" + left + " left).");
+  var score = 0, lines = ITEMS.map(function(t, i){ score += ans[i]; return (ans[i] ? "✅ " : "❌ ") + t + ": " + (ans[i] ? "Yes" : "No"); });
+  var day = +$("day").value, date = $("date").value, nt = $("notes").value.replace(/\s*\n+\s*/g, " ").trim();
+  window._last = { name: name, day: day, date: date, score: score, notes: nt, ans: ITEMS.map(function(t, i){ return ans[i]; }) };
+  try { localStorage.setItem("hc_name", name); localStorage.setItem("hc_day", Math.min(day + 1, 30)); } catch(e) {}
+  $("m1").className = "msg";
+  return ["✅ " + CHALLENGE_NAME.toUpperCase() + " CHECK-IN", "Name: " + name, "Day: " + day + "/30", "Date: " + date, ""].concat(lines, ["", "Score: " + score + "/" + N, "Notes: " + (nt || "-")]).join("\n");
+}
+function wrapText(x, t, w) {
+  var words = t.split(" "), lines = [], cur = "";
+  words.forEach(function(wd){ var tst = cur ? cur + " " + wd : wd; if (x.measureText(tst).width > w && cur) { lines.push(cur); cur = wd; } else cur = tst; });
+  if (cur) lines.push(cur);
+  return lines.slice(0, 3);
+}
+function makeCanvas(d) {
+  var W = 1080, rowH = 62, F = "system-ui,-apple-system,'Segoe UI',Roboto,sans-serif";
+  var c = document.createElement("canvas"), x = c.getContext("2d");
+  x.font = "30px " + F;
+  var nl = d.notes && d.notes !== "-" ? wrapText(x, d.notes, W - 120) : [];
+  var top = 270, H = top + N * rowH + 230 + (nl.length ? nl.length * 42 + 80 : 0) + 80;
+  c.width = W; c.height = H;
+  x.fillStyle = "#0d0a0b"; x.fillRect(0, 0, W, H);
+  x.fillStyle = "#f04452"; x.fillRect(0, 0, W, 10);
+  x.textBaseline = "alphabetic";
+  x.font = "700 40px " + F; x.fillStyle = "#f04452"; x.fillText(CHALLENGE_NAME.toUpperCase(), 60, 95);
+  x.font = "600 28px " + F; x.fillStyle = "#a89a9c"; x.fillText("DAILY CHECK-IN", 60, 138);
+  x.font = "700 58px " + F; x.fillStyle = "#f5eded"; x.fillText(d.name, 60, 210);
+  x.font = "600 32px " + F; x.fillStyle = "#a89a9c"; x.textAlign = "right"; x.fillText("Day " + d.day + "/30  ·  " + d.date, W - 60, 210); x.textAlign = "left";
+  ITEMS.forEach(function(t, i){
+    var y = top + i * rowH, yes = d.ans[i] === 1;
+    x.fillStyle = "#2c2124"; x.fillRect(60, y, W - 120, 1);
+    x.fillStyle = yes ? "#4caf50" : "#7c8798"; x.beginPath(); x.arc(86, y + 31, 17, 0, 7); x.fill();
+    x.strokeStyle = "#fff"; x.lineWidth = 4; x.lineCap = "round"; x.beginPath();
+    if (yes) { x.moveTo(78, y + 31); x.lineTo(84, y + 38); x.lineTo(95, y + 24); }
+    else { x.moveTo(79, y + 24); x.lineTo(93, y + 38); x.moveTo(93, y + 24); x.lineTo(79, y + 38); }
+    x.stroke();
+    x.font = "30px " + F; x.fillStyle = "#f5eded"; x.fillText(t, 125, y + 41);
+    x.font = "700 28px " + F; x.fillStyle = yes ? "#4caf50" : "#94a3b8"; x.textAlign = "right"; x.fillText(yes ? "YES" : "NO", W - 60, y + 41); x.textAlign = "left";
+  });
+  var by = top + N * rowH + 30;
+  x.fillStyle = "#2c2124"; x.fillRect(60, by, W - 120, 1);
+  x.font = "700 96px " + F; x.fillStyle = "#f04452"; x.fillText(d.score + "/" + N, 60, by + 110);
+  x.font = "600 30px " + F; x.fillStyle = "#a89a9c"; x.fillText("habits completed", 330, by + 108);
+  x.fillStyle = "#2c2124"; x.fillRect(60, by + 140, W - 120, 18);
+  x.fillStyle = d.score >= 14 ? "#4caf50" : d.score >= 9 ? "#f0a81c" : "#ef5350"; x.fillRect(60, by + 140, (W - 120) * d.score / N, 18);
+  if (nl.length) {
+    x.font = "600 26px " + F; x.fillStyle = "#a89a9c"; x.fillText("NOTES", 60, by + 215);
+    x.font = "30px " + F; x.fillStyle = "#f5eded";
+    nl.forEach(function(l, i){ x.fillText(l, 60, by + 260 + i * 42); });
+  }
+  return c;
+}
+$("send").onclick = async function(){
+  var m = build(); if (!m) return;
+  var d = window._last, c = makeCanvas(d);
+  $("pimg").src = c.toDataURL("image/png"); $("prev").hidden = false;
+  var blob = await new Promise(function(r){ c.toBlob(r, "image/png"); });
+  var fname = "health-checkin-" + d.name.replace(/[^a-z0-9]+/gi, "-") + "-day" + d.day + ".png";
+  try {
+    var file = new File([blob], fname, { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file] }); $("m1").textContent = "Choose WhatsApp, then the group, and send."; return; }
+  } catch (e) { if (e && e.name === "AbortError") return; }
+  $("m1").textContent = "Your image is ready below. Press and hold it to save, then post it in the group.";
+  $("prev").scrollIntoView({ behavior: "smooth" });
+};
+$("sendtxt").onclick = function(){
+  var m = build(); if (!m) return;
+  var a = document.createElement("a"); a.href = "https://wa.me/?text=" + encodeURIComponent(m); a.target = "_blank"; a.rel = "noopener";
+  document.body.appendChild(a); a.click(); a.remove();
+};
+document.addEventListener("click", function(e){
+  var a = e.target.closest('a[href^="#"]'); if (!a) return;
+  e.preventDefault(); $("menu").classList.remove("open");
+  var t = a.getAttribute("href") === "#top" ? document.body : $(a.getAttribute("href").slice(1));
+  if (t) t.scrollIntoView({ behavior: "smooth" });
+});
+</script>
+</body></html>
